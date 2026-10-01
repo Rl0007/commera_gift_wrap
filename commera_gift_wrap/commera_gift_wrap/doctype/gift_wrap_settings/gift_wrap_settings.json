@@ -1,0 +1,44 @@
+{
+ "actions": [],
+ "creation": "2026-10-01 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": ["price_per_item", "fee_account", "simulate_failure"],
+ "fields": [
+  {
+   "description": "Charged once for every unit in a gift-wrapped cart.",
+   "fieldname": "price_per_item",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Price per Item",
+   "non_negative": 1
+  },
+  {
+   "description": "Leave empty to book the fee to Commera's Charge Account Head.",
+   "fieldname": "fee_account",
+   "fieldtype": "Link",
+   "label": "Fee Account",
+   "options": "Account"
+  },
+  {
+   "default": "0",
+   "description": "Testing only: makes the fee hook raise, so checkout shows Commera's generic error.",
+   "fieldname": "simulate_failure",
+   "fieldtype": "Check",
+   "label": "Simulate Fee Hook Failure"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-10-01 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Commera Gift Wrap",
+ "name": "Gift Wrap Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {"create": 1, "delete": 1, "email": 1, "print": 1, "read": 1, "role": "System Manager", "share": 1, "write": 1}
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

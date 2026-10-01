@@ -1,0 +1,34 @@
+{
+ "actions": [],
+ "autoname": "GWT-.#####",
+ "creation": "2026-10-01 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": ["sales_order", "customer", "item_count", "column_break_status", "status", "commera_event", "section_break_message", "message"],
+ "fields": [
+  {"fieldname": "sales_order", "fieldtype": "Link", "in_list_view": 1, "label": "Sales Order", "options": "Sales Order", "reqd": 1, "unique": 1, "search_index": 1},
+  {"fieldname": "customer", "fieldtype": "Link", "in_list_view": 1, "label": "Customer", "options": "Customer"},
+  {"fieldname": "item_count", "fieldtype": "Float", "label": "Items to Wrap"},
+  {"fieldname": "column_break_status", "fieldtype": "Column Break"},
+  {"default": "Open", "fieldname": "status", "fieldtype": "Select", "in_list_view": 1, "in_standard_filter": 1, "label": "Status", "options": "Open\nWrapped"},
+  {"fieldname": "commera_event", "fieldtype": "Link", "label": "Commera Event", "options": "Commera Event", "read_only": 1},
+  {"fieldname": "section_break_message", "fieldtype": "Section Break"},
+  {"fieldname": "message", "fieldtype": "Small Text", "label": "Gift Message"}
+ ],
+ "links": [],
+ "modified": "2026-10-01 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Commera Gift Wrap",
+ "name": "Gift Wrap Task",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+  {"read": 1, "write": 1, "report": 1, "print": 1, "role": "Stock User"}
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "sales_order",
+ "track_changes": 1
+}
