@@ -35,6 +35,15 @@ def add_custom_fields():
 					"module": MODULE,
 				}
 			],
+			"Customer": [
+				{
+					"fieldname": "commera_gift_wrap_default_message",
+					"label": "Default Gift Message",
+					"fieldtype": "Small Text",
+					"insert_after": "territory",
+					"module": MODULE,
+				}
+			],
 		},
 		update=True,
 	)

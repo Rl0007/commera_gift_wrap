@@ -1,8 +1,5 @@
 import frappe
-from commera.api.payments import cart_write_lock, save_cart_quotation, validate_cart_is_not_in_checkout
-from commera.api.shipping import get_checkout_summary
-from commera.checkout_hooks import apply_app_fees
-from commera.core import _get_cart_quotation
+from commera.sdk import cart
 from frappe import _
 from frappe.rate_limiter import rate_limit
 from frappe.utils.data import cint, cstr, flt
@@ -11,27 +8,26 @@ GIFT_WRAP_FEE_DESCRIPTION = "Gift wrap"
 MAX_MESSAGE_LENGTH = 200
 
 
-# Guests are scoped by Commera's cart cookie inside _get_cart_quotation.
+# Guests are scoped by Commera's cart cookie inside cart.get_cart.
 @frappe.whitelist(allow_guest=True, methods=["POST"])
 @rate_limit(limit=100, seconds=60 * 60)
 def set_gift_wrap(enabled: bool | int | str, message: str | None = None) -> dict:
-	quotation = _get_cart_quotation()
-	if quotation.is_new():
+	current_cart = cart.get_cart()
+	if not current_cart:
 		frappe.throw(_("Add something to your cart before choosing gift wrap."))
 
-	with cart_write_lock(quotation):
-		validate_cart_is_not_in_checkout(quotation.name)
-		quotation.commera_gift_wrap_enabled = cint(enabled)
-		quotation.commera_gift_wrap_message = (
-			cstr(message).strip() if quotation.commera_gift_wrap_enabled else ""
-		)
-		apply_app_fees(quotation)
-		save_cart_quotation(quotation)
-		return {
-			"enabled": quotation.commera_gift_wrap_enabled,
-			"message": quotation.commera_gift_wrap_message,
-			"checkout_summary": get_checkout_summary(quotation),
-		}
+	enabled = cint(enabled)
+	message = (cstr(message).strip() or get_default_message(current_cart["customer"])) if enabled else ""
+	checkout_summary = cart.set_cart_fields(
+		{"commera_gift_wrap_enabled": enabled, "commera_gift_wrap_message": message}
+	)
+	return {"enabled": enabled, "message": message, "checkout_summary": checkout_summary}
+
+
+def get_default_message(customer: str | None) -> str:
+	if not customer:
+		return ""
+	return cstr(frappe.db.get_value("Customer", customer, "commera_gift_wrap_default_message"))
 
 
 def get_gift_wrap_fees(quotation) -> list[dict]:

@@ -1,5 +1,5 @@
 app_name = "commera_gift_wrap"
-app_title = "Commera Gift Wrap"
+app_title = "Gift Wrap"
 app_publisher = "BWH Tech"
 app_description = "Gift wrap at checkout for Commera stores"
 app_email = "dev@bwh.tech"

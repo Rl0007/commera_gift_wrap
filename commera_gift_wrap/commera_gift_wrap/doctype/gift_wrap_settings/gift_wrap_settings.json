@@ -3,7 +3,7 @@
  "creation": "2026-10-01 10:00:00.000000",
  "doctype": "DocType",
  "engine": "InnoDB",
- "field_order": ["price_per_item", "fee_account", "simulate_failure"],
+ "field_order": ["price_per_item", "fee_account", "testing_section", "simulate_failure", "simulate_task_failure"],
  "fields": [
   {
    "description": "Charged once for every unit in a gift-wrapped cart.",
@@ -21,16 +21,28 @@
    "options": "Account"
   },
   {
+   "fieldname": "testing_section",
+   "fieldtype": "Section Break",
+   "label": "Testing"
+  },
+  {
    "default": "0",
    "description": "Testing only: makes the fee hook raise, so checkout shows Commera's generic error.",
    "fieldname": "simulate_failure",
    "fieldtype": "Check",
    "label": "Simulate Fee Hook Failure"
+  },
+  {
+   "default": "0",
+   "description": "Testing only: makes the order-placed hook raise, so the order shows a failed app delivery to retry.",
+   "fieldname": "simulate_task_failure",
+   "fieldtype": "Check",
+   "label": "Simulate Task Hook Failure"
   }
  ],
  "issingle": 1,
  "links": [],
- "modified": "2026-10-01 10:00:00.000000",
+ "modified": "2026-10-03 12:00:00.000000",
  "modified_by": "Administrator",
  "module": "Commera Gift Wrap",
  "name": "Gift Wrap Settings",
