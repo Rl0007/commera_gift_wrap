@@ -10,7 +10,7 @@ def create_gift_wrap_task(event: CommeraEvent) -> None:
 	if frappe.db.get_single_value("Gift Wrap Settings", "simulate_task_failure"):
 		raise RuntimeError("Gift Wrap Settings: simulated task hook failure")
 	order = orders.get_order(
-		event.sales_order, extra_fields=["commera_gift_wrap_enabled", "commera_gift_wrap_message"]
+		event.reference_name, extra_fields=["commera_gift_wrap_enabled", "commera_gift_wrap_message"]
 	)
 	gift_wrap = order["plugin_fields"]
 	if not gift_wrap["commera_gift_wrap_enabled"] or not has_gift_wrap_fee(order):
