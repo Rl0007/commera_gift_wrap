@@ -1,5 +1,5 @@
 <script>
-export const extension = { label: 'Wrap queue', icon: 'gift', requires: 'Gift Wrap Task', order: 1 }
+export const plugin = { label: 'Wrap queue', icon: 'gift', requires: 'Gift Wrap Task', order: 1 }
 </script>
 
 <script setup>
@@ -11,7 +11,7 @@ import {
   ListPagination,
   ListSkeleton,
   StatusBadge,
-  useExtension,
+  usePlugin,
   useMethodAction,
   useMethodRead,
   usePage,
@@ -23,7 +23,7 @@ const TABS = [
 ]
 const ROW_HEIGHT = 60
 
-const { navigate, toast } = useExtension()
+const { navigate, toast } = usePlugin()
 usePage().setActions([{ label: 'Wrap report', icon: 'chart-column', onClick: () => navigate('report') }])
 
 const status = ref('Open')

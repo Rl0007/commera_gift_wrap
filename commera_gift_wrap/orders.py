@@ -12,7 +12,7 @@ def create_gift_wrap_task(event: CommeraEvent) -> None:
 	order = orders.get_order(
 		event.sales_order, extra_fields=["commera_gift_wrap_enabled", "commera_gift_wrap_message"]
 	)
-	gift_wrap = order["app_fields"]
+	gift_wrap = order["plugin_fields"]
 	if not gift_wrap["commera_gift_wrap_enabled"] or not has_gift_wrap_fee(order):
 		return
 	# Delivery is at least once; the unique sales_order column backs this check up against a race.
@@ -36,4 +36,4 @@ def create_gift_wrap_task(event: CommeraEvent) -> None:
 
 
 def has_gift_wrap_fee(order: Order) -> bool:
-	return any(fee["description"] == GIFT_WRAP_FEE_DESCRIPTION for fee in order["app_fees"])
+	return any(fee["description"] == GIFT_WRAP_FEE_DESCRIPTION for fee in order["plugin_fees"])

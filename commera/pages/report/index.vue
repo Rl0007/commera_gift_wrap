@@ -1,13 +1,13 @@
 <script>
-export const extension = { label: 'Wrap report', icon: 'chart-column', requires: 'Gift Wrap Task', order: 2 }
+export const plugin = { label: 'Wrap report', icon: 'chart-column', requires: 'Gift Wrap Task', order: 2 }
 </script>
 
 <script setup>
 import { computed } from 'vue'
 import { Progress, Skeleton } from 'frappe-ui'
-import { EmptyState, shortDate, useExtension, useMethodRead, usePage } from '@commera/admin'
+import { EmptyState, shortDate, usePlugin, useMethodRead, usePage } from '@commera/admin'
 
-const { navigate } = useExtension()
+const { navigate } = usePlugin()
 usePage().setActions([{ label: 'Wrap queue', icon: 'gift', onClick: () => navigate('gift-wrap') }])
 
 const reportRequest = useMethodRead('commera_gift_wrap.api.get_wrap_report')

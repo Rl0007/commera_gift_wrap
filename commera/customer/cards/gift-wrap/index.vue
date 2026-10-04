@@ -1,12 +1,12 @@
 <script>
-export const extension = { label: 'Gift wrap', requires: 'Gift Wrap Task' }
+export const plugin = { label: 'Gift wrap', requires: 'Gift Wrap Task' }
 </script>
 
 <script setup>
 import { computed, watch } from 'vue'
-import { StatusBadge, shortDate, useCard, useExtension, useMethodRead } from '@commera/admin'
+import { StatusBadge, shortDate, useCard, usePlugin, useMethodRead } from '@commera/admin'
 
-const { record } = useExtension()
+const { record } = usePlugin()
 const card = useCard()
 
 const giftWrapRequest = useMethodRead('commera_gift_wrap.api.get_customer_gift_wrap', {

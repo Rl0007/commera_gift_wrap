@@ -1,5 +1,5 @@
 <script>
-export const extension = {
+export const plugin = {
   label: 'Edit gift message',
   icon: 'message-square',
   requires: 'Gift Wrap Task',
@@ -10,11 +10,11 @@ export const extension = {
 <script setup>
 import { ref, watch } from 'vue'
 import { FormControl } from 'frappe-ui'
-import { useAction, useExtension, useMethodAction, useMethodRead } from '@commera/admin'
+import { useAction, usePlugin, useMethodAction, useMethodRead } from '@commera/admin'
 
 const MAX_MESSAGE_LENGTH = 200
 
-const { record, toast } = useExtension()
+const { record, toast } = usePlugin()
 const action = useAction()
 
 const message = ref('')

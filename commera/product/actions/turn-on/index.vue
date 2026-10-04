@@ -1,5 +1,5 @@
 <script>
-export const extension = {
+export const plugin = {
   label: 'Turn on gift wrap',
   icon: 'gift',
   requires: 'Gift Wrap Task',

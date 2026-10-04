@@ -1,5 +1,5 @@
 <script>
-export const extension = {
+export const plugin = {
   label: 'Gift wrap',
   requires: 'Gift Wrap Task',
   condition: 'commera_gift_wrap.conditions.has_gift_wrap_task',
@@ -9,9 +9,9 @@ export const extension = {
 <script setup>
 import { computed } from 'vue'
 import { Skeleton, dayjs } from 'frappe-ui'
-import { StatusBadge, useExtension, useMethodRead } from '@commera/admin'
+import { StatusBadge, usePlugin, useMethodRead } from '@commera/admin'
 
-const { record } = useExtension()
+const { record } = usePlugin()
 
 const taskRequest = useMethodRead('commera_gift_wrap.api.get_order_gift_wrap', {
   params: () => ({ sales_order: record.value.name }),

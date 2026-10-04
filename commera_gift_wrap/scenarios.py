@@ -150,7 +150,7 @@ def show_cart(admin: Client, quotation_name: str, label: str) -> dict:
 	for row in quotation["taxes"]:
 		print(
 			f"    tax row {row['idx']}: {row['description']!r} {row['charge_type']} rate={row['rate']}"
-			f" amount={row['tax_amount']} app_fee={row.get('commera_app_fee')}"
+			f" amount={row['tax_amount']} plugin_fee={row.get('commera_plugin_fee')}"
 		)
 	return quotation
 
@@ -356,7 +356,7 @@ def run():
 	)
 	for row in sales_order["taxes"]:
 		print(
-			f"    SO tax row: {row['description']!r} amount={row['tax_amount']} app_fee={row.get('commera_app_fee')}"
+			f"    SO tax row: {row['description']!r} amount={row['tax_amount']} plugin_fee={row.get('commera_plugin_fee')}"
 		)
 	poll(
 		"S3 Gift Wrap Task",
