@@ -324,7 +324,7 @@ def run():
 			"frappe.client.get_list",
 			doctype="Error Log",
 			filters={
-				"method": ["like", "commera_cart_fees hook failed: commera_gift_wrap%"],
+				"method": ["like", 'commera_checkout["cart_fees"] hook failed: commera_gift_wrap%'],
 				"creation": [">=", crash_started["modified"]],
 			},
 			fields=["name", "method", "reference_doctype", "reference_name", "creation"],

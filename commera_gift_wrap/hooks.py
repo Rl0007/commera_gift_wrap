@@ -11,6 +11,8 @@ after_install = "commera_gift_wrap.install.add_custom_fields"
 after_migrate = "commera_gift_wrap.install.add_custom_fields"
 
 commera_api_version = [1]
-commera_cart_fees = ["commera_gift_wrap.cart.get_gift_wrap_fees"]
-commera_validate_cart = ["commera_gift_wrap.cart.get_gift_wrap_refusal"]
-commera_order_placed = ["commera_gift_wrap.orders.create_gift_wrap_task"]
+commera_events = {"order_placed": ["commera_gift_wrap.orders.create_gift_wrap_task"]}
+commera_checkout = {
+	"cart_fees": ["commera_gift_wrap.cart.get_gift_wrap_fees"],
+	"validate_cart": ["commera_gift_wrap.cart.get_gift_wrap_refusal"],
+}
